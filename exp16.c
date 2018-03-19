@@ -93,7 +93,7 @@ item=start->data;
 start=start->forw;
 start->backw=NULL;
 }
-//printf("\nItem %d deleted",item);
+printf("\nItem %d deleted",item);
 }
 void deleteEnd(){
   int item;
@@ -110,7 +110,7 @@ struct node* tmp;
 tmp->backw->forw=NULL;
 tmp->backw=NULL;
 }
-//printf("\nItem %d deleted",item);  
+printf("\nItem %d deleted",item);  
 }
 void deleteNode(){
       int item,value;
@@ -130,7 +130,7 @@ struct node* tmp;
 tmp->forw->backw=tmp->backw;
 tmp->backw->forw=tmp->forw;
 }
-//printf("\nItem %d deleted",item);  
+printf("\nItem %d deleted",item);  
 }
 
 void insert(){
