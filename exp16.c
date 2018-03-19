@@ -27,7 +27,7 @@ void insertBeg(){
      start->backw=ptr;
      start=ptr;
  }
- 
+// printf("\nItem %d Inserted",item);
 }
 void insertEnd(){
     int item;
@@ -53,7 +53,7 @@ struct node* ptr=(struct node*)malloc(sizeof(struct node));
      ptr->backw=tmp;
     
  }
- 
+// printf("\nItem %d Inserted",item);
 }
 void insertNode(){
     int item,value;
@@ -74,30 +74,72 @@ void insertNode(){
  else
  {struct node* tmp;
  tmp=start;
- while(tmp->data!=value){
+ while(tmp->data!=value && tmp!=NULL){
      tmp=tmp->forw;
  }
      ptr->backw=tmp;
      ptr->forw=tmp->forw;
      tmp->forw=ptr;
  }
- 
+// printf("\nItem %d Inserted",item);
 }
 void deleteBeg(){
-    
+int item;
+if(start==NULL)
+printf("\nUnderflow");
+else
+{
+item=start->data;
+start=start->forw;
+start->backw=NULL;
+}
+//printf("\nItem %d deleted",item);
 }
 void deleteEnd(){
-    
+  int item;
+if(start==NULL)
+printf("\nUnderflow");
+else
+{
+item=start->data;
+struct node* tmp;
+ tmp=start;
+ while(tmp->forw!=NULL){
+     tmp=tmp->forw;
+ }
+tmp->backw->forw=NULL;
+tmp->backw=NULL;
+}
+//printf("\nItem %d deleted",item);  
 }
 void deleteNode(){
-    
+      int item,value;
+if(start==NULL)
+printf("\nUnderflow");
+else
+{
+     printf("\nenter item to be deleted :");
+ scanf("%d",&value);
+item=start->data;
+struct node* tmp;
+ tmp=start;
+ while(tmp->data!=value && tmp!=NULL){
+     tmp=tmp->forw;
+ }
+
+tmp->forw->backw=tmp->backw;
+tmp->backw->forw=tmp->forw;
 }
+//printf("\nItem %d deleted",item);  
+}
+
 void insert(){
     int ch;
+    printf("\nwhere do you wanna insert ?");
 printf("\n1.Insert at begining.");
 printf("\n2.Insert at end");
 printf("\n3.Insert after a given node");
-printf("\nenter your choice");
+printf("\nenter your choice :");
 scanf("%d",&ch);
 switch(ch){
     case 1:insertBeg();break;
@@ -108,10 +150,11 @@ switch(ch){
 }
 void delete(){
         int ch;
+        printf("\nfrom where do you wanna delete ?");
 printf("\n1.Delete from begining.");
 printf("\n2.Delete from end");
-printf("\n3.Delete after a given node");
-printf("\nenter your choice");
+printf("\n3.Delete  a given node");
+printf("\nenter your choice :");
 scanf("%d",&ch);
 switch(ch){
     case 1:deleteBeg();break;
@@ -119,6 +162,19 @@ switch(ch){
     case 3:deleteNode();break;
     default:printf("\nwrong choice");
 }
+}
+void display(){
+    struct node* tmp;
+    if(start==NULL)
+    printf("\nempty list");
+    else
+    { tmp=start;
+    while(tmp!=NULL){
+        printf("%d  ",tmp->data);
+        tmp=tmp->forw;
+    }
+    }
+    printf("\n");
 }
 int main()
 {
@@ -128,16 +184,18 @@ int ch;
        
         printf("\n1.Insertion");
         printf("\n2.Deletion");
-        printf("\n3.Quit");
+        printf("\n3.Display");
+        printf("\n4.Quit");
         printf("\nenter your choice :");
         scanf("%d",&ch);
         switch(ch){
             case 1: insert();break;
             case 2:delete();break;
-            case 3:break;
+            case 3:display();break;
+            case 4:break;
             default:printf("\nwrong choice");
         }
-    }while(ch!=3);
+    }while(ch!=4);
 
     return 0;
 }
