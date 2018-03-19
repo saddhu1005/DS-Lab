@@ -1,13 +1,97 @@
-/******************************************************************************
-
 
 #include <stdio.h>
+#include<stdlib.h>
 struct node
 {
     int data;
     struct node *forw,*backw;
-}
+};
 struct node *start=NULL;
+void insertBeg(){
+    int item;
+ struct node* ptr=(struct node*)malloc(sizeof(struct node));
+ if(ptr==NULL){
+     printf("\nOverflow");
+     return;
+ }
+ printf("\nenter item to insert:");
+ scanf("%d",&item);
+ ptr->data=item;
+ ptr->forw=NULL;
+ ptr->backw=NULL;
+ if(start==NULL)
+ start=ptr;
+ else
+ {
+     ptr->forw=start;
+     start->backw=ptr;
+     start=ptr;
+ }
+ 
+}
+void insertEnd(){
+    int item;
+struct node* ptr=(struct node*)malloc(sizeof(struct node));
+ if(ptr==NULL){
+     printf("\nOverflow");
+     return;
+ }
+ printf("\nenter item to insert:");
+ scanf("%d",&item);
+ ptr->data=item;
+ ptr->forw=NULL;
+ ptr->backw=NULL;
+ if(start==NULL)
+ start=ptr;
+ else
+ { struct node* tmp;
+ tmp=start;
+ while(tmp->forw!=NULL){
+     tmp=tmp->forw;
+ }
+     tmp->forw=ptr;
+     ptr->backw=tmp;
+    
+ }
+ 
+}
+void insertNode(){
+    int item,value;
+    struct node* ptr=(struct node*)malloc(sizeof(struct node));
+ if(ptr==NULL){
+     printf("\nOverflow");
+     return;
+ }
+ printf("\nenter item after which item to be inserted :");
+ scanf("%d",&value);
+ printf("\nenter item to insert:");
+ scanf("%d",&item);
+ ptr->data=item;
+ ptr->forw=NULL;
+ ptr->backw=NULL;
+ if(start==NULL)
+ start=ptr;
+ else
+ {struct node* tmp;
+ tmp=start;
+ while(tmp->data!=value){
+     tmp=tmp->forw;
+ }
+     ptr->backw=tmp;
+     ptr->forw=tmp->forw;
+     tmp->forw=ptr;
+ }
+ 
+}
+void deleteBeg(){
+    
+}
+void deleteEnd(){
+    
+}
+void deleteNode(){
+    
+}
 void insert(){
     int ch;
 printf("\n1.Insert at begining.");
@@ -41,7 +125,7 @@ int main()
 int ch;
     //printf("16115068 Sadanand Vishwas\n");
     do {
-        printf("\n\n\n");
+       
         printf("\n1.Insertion");
         printf("\n2.Deletion");
         printf("\n3.Quit");
@@ -53,7 +137,7 @@ int ch;
             case 3:break;
             default:printf("\nwrong choice");
         }
-    }while(ch!=3)
+    }while(ch!=3);
 
     return 0;
 }
